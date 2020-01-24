@@ -17,4 +17,4 @@ This is a project for the Biometric Systems course at Sapienza University
 2. Installer imutils med ```pip3 install imutils``` [her](https://www.npmjs.com/package/axios)
 3. Installer face_recognition med ```pip3 install face_recognition```
 4. Gjør checkFirefox running kjørbar ved ```chmod +x checkFirefoxRunning.sh```
-5. Kjør faceDetection med ```python faceDetection.py --prototxt deploy.prototxt.txt \\n\t--model res10_300x300_ssd_iter_140000.caffemodel```
+5. Kjør faceDetection med ```python3 faceDetection.py --prototxt deploy.prototxt.txt \\n\t--model res10_300x300_ssd_iter_140000.caffemodel```
