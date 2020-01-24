@@ -45,7 +45,7 @@ while True:
         face = frame[startY:endY,startX:endX]
 
     key = cv2.waitKey(1) & 0xFF
-    cv2.imshow("frame.jpg", face)
+    cv2.imwrite("frame.jpg", face)
     time.sleep(5.0)
  
 cv2.destroyAllWindows()

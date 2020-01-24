@@ -6,7 +6,6 @@ while true; do
 		printf "firefox running\n"
 	else
 		printf "firefox not running\n"
-		continue
 	fi
 	sleep 5
 done
