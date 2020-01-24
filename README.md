@@ -9,7 +9,7 @@ This is a project for the Biometric Systems course at Sapienza University
 
 <a name="v&r"></a>
 ## Tools and Framework
-* [OpenCV](https://opencv.org/) - "Open source server environment"
+* [OpenCV](https://opencv.org/)
 
 <a name="inst"></a>
 ## Installation
