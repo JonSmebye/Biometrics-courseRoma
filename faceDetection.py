@@ -48,10 +48,6 @@ def menu():
 
 def main():
 	imagePathStored = menu()
-	img2 = cv2.imread('/Users/jonsmebye/Documents/bilder/bild/anders1.jpg',1)
-	cv2.imshow("asd",img2)
-	cv2.waitKey(0)
-	cv2.destroyAllWindows()
 	recognized = 0
 	notJon = 0
 	notRecognized = 0
