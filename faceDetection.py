@@ -45,10 +45,6 @@ def menu():
 			print("\nNot Valid Choice Try again")
 	return imagePath
 
-def ShowMessageBox(message = "", title = "Message Box", icon = 'INFO'):
-    def draw(self, context):
-        self.layout.label(message)
-    bpy.context.window_manager.popup_menu(draw, title = title, icon = icon)
 
 def main():
 	imagePathStored = menu()
@@ -66,7 +62,6 @@ def main():
 				print("Unauthorized subject detected")
 				notRecognized += 1
 				if notRecognized > 2:
-					easygui.msgbox("You are not authorized", title="simple gui")
 					user = os.popen('whoami').read()
 					cmd = 'launchctl bootout gui/$(id -u "'+user.strip('\n')+ '")'
 					os.system(cmd)
