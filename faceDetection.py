@@ -3,7 +3,6 @@ from imutils.video import VideoStream
 import cv2
 import time
 import os
-import ctypes
 
 def getImageFromWebcam():
 	cam = VideoStream(src=0).start()
@@ -46,10 +45,13 @@ def menu():
 			print("\nNot Valid Choice Try again")
 	return imagePath
 
+def ShowMessageBox(message = "", title = "Message Box", icon = 'INFO'):
+    def draw(self, context):
+        self.layout.label(message)
+    bpy.context.window_manager.popup_menu(draw, title = title, icon = icon)
+
 def main():
 	imagePathStored = menu()
-	recognized = 0
-	notJon = 0
 	notRecognized = 0
 	while True:
 		img = getImageFromWebcam()
@@ -61,21 +63,20 @@ def main():
 			faces_front.all()
 			res = faceRecognition(imagePathStored, img)
 			if res != True:
-				print("Not authorized")
+				print("Unauthorized subject detected")
 				notRecognized += 1
-				if notRecognized >4:
-					print("throw out")
-					ctypes.windll.user32.MessageBoxW(0, "You are not authorized to be on this computer", "Error", 1)
-					#os.system('launchctl bootout gui/$(id -u "Jon Smebye")')
+				if notRecognized > 2:
+					easygui.msgbox("You are not authorized", title="simple gui")
+					user = os.popen('whoami').read()
+					cmd = 'launchctl bootout gui/$(id -u "'+user.strip('\n')+ '")'
+					os.system(cmd)
 			else:
-				print("A Jon appeared")
-				recognized +=1
+				print("Autorized subject detected")
 				notRecognized = 0
 		except:
 			print("No faces detected")
 		time.sleep(2.0)
-	print("recognized: " + str(recognized))
-	print("Not Jon: " + str(notJon))
+
 if __name__ == '__main__':
     main()
 
