@@ -3,6 +3,7 @@ from imutils.video import VideoStream
 import cv2
 import time
 import os
+import ctypes
 
 def getImageFromWebcam():
 	cam = VideoStream(src=0).start()
@@ -22,7 +23,8 @@ def faceRecognition(imgPath, img):
 
 def takePictureAsRefferance():
 	image = getImageFromWebcam()
-	filePath = "refe.jpg"
+	directory = os.popen('pwd').read()
+	filePath = "/refer.jpg"
 	cv2.imwrite(filePath, image)
 	return filePath
 
@@ -47,8 +49,6 @@ def menu():
 
 def main():
 	imagePathStored = menu()
-	recognized = 0
-	notJon = 0
 	notRecognized = 0
 	while True:
 		img = getImageFromWebcam()
@@ -62,9 +62,10 @@ def main():
 			if res != True:
 				print("Not authorized")
 				notRecognized += 1
-				if notRecognized >4:
+				if notRecognized >3:
 					print("throw out")
-					os.system('launchctl bootout gui/$(id -u "Jon Smebye")')
+					ctypes.windll.user32.MessageBoxW(0, "You are not authorized to be on this computer", "Error", 1)
+					#os.system('launchctl bootout gui/$(id -u "Jon Smebye")')
 			else:
 				print("A Jon appeared")
 				recognized +=1
@@ -72,7 +73,5 @@ def main():
 		except:
 			print("No faces detected")
 		time.sleep(2.0)
-	print("recognized: " + str(recognized))
-	print("Not Jon: " + str(notJon))
 if __name__ == '__main__':
     main()
