@@ -23,8 +23,7 @@ def faceRecognition(imgPath, img):
 
 def takePictureAsRefferance():
 	image = getImageFromWebcam()
-	directory = os.popen('pwd').read()
-	filePath = "/refer.jpg"
+	filePath = "refe.jpg"
 	cv2.imwrite(filePath, image)
 	return filePath
 
@@ -49,6 +48,12 @@ def menu():
 
 def main():
 	imagePathStored = menu()
+	img2 = cv2.imread('/Users/jonsmebye/Documents/bilder/bild/anders1.jpg',1)
+	cv2.imshow("asd",img2)
+	cv2.waitKey(0)
+	cv2.destroyAllWindows()
+	recognized = 0
+	notJon = 0
 	notRecognized = 0
 	while True:
 		img = getImageFromWebcam()
@@ -62,7 +67,7 @@ def main():
 			if res != True:
 				print("Not authorized")
 				notRecognized += 1
-				if notRecognized >3:
+				if notRecognized >4:
 					print("throw out")
 					ctypes.windll.user32.MessageBoxW(0, "You are not authorized to be on this computer", "Error", 1)
 					#os.system('launchctl bootout gui/$(id -u "Jon Smebye")')
@@ -73,5 +78,9 @@ def main():
 		except:
 			print("No faces detected")
 		time.sleep(2.0)
+	print("recognized: " + str(recognized))
+	print("Not Jon: " + str(notJon))
 if __name__ == '__main__':
     main()
+
+
